@@ -1,0 +1,124 @@
+~/nova2-hackaton $ python nova_sentinel_engine.py > FINAL_AUDIT_LOG.txt
+~/nova2-hackaton $ python nova_sentinel_engine.py
+
+╔══════════════════════════════════════════════════════════╗
+║   🏮 NOVA2 SECURITY REPORT - SHADOW ARCHITECT          ║
+║   ARCHITECT: OTTO NAPOLEON MENDOZA QUANT              ║
+╚══════════════════════════════════════════════════════════╝
+
+[📡] CONECTANDO A AMAZON NOVA LITE...
+
+─── [ ANÁLISIS DE SEGURIDAD ] ─────────────────────────────
+Error en búnker: Unable to locate credentials
+───────────────────────────────────────────────────────────
+
+STATUS: SCAN COMPLETE | DEPLOYED BY:
+>>> OTTO NAPOLEON MENDOZA QUANT <<<
+
+╔══════════════════════════════════════════════════════════╗
+║   🏮 NOVA2 SECURITY REPORT - SHADOW ARCHITECT          ║
+║   ARCHITECT: OTTO NAPOLEON MENDOZA QUANT              ║
+╚══════════════════════════════════════════════════════════╝
+
+[📡] CONECTANDO A AMAZON NOVA LITE...
+
+─── [ ANÁLISIS DE SEGURIDAD ] ─────────────────────────────
+Claro, vamos a analizar este patrón lógico desde una perspectiva educativa, identificar los riesgos asociados y sugerir una mejora profesional.
+
+### Análisis del Patrón Lógico
+
+El código en cuestión es:
+
+```python
+if user.access == 'root':
+    access_data()
+```
+
+Este código verifica si el usuario tiene acceso de "root" y, en caso afirmativo, permite el acceso a los datos mediante la función `access_data()`.
+
+### Identificación de Riesgos
+
+1. **Seguridad**:
+   - **Elevación de Privilegios**: Si un atacante puede modificar el valor de `user.access`, podría obtener acceso no autorizado a funciones o datos restringidos.
+   - **Inyección de Datos**: Si `user.access` se obtiene de una fuente no confiable (por ejemplo, entrada del usuario), esto podría ser explotado para obtener acceso indebido.
+
+2. **Mantenimiento y Escalabilidad**:
+   - **Dificultad para Auditar**: El código es muy directo y no proporciona detalles adicionales sobre cómo se determina el nivel de acceso del usuario. Esto puede dificultar la auditoría y el seguimiento de quién accede a qué recursos.
+   - **Rigidez**: El código solo maneja un caso específico (`root`). Si se necesitan más niveles de acceso en el futuro, el código podría volverse complejo y difícil de mantener.
+
+3. **Principio de Responsabilidad Única (SRP)**:
+   - El código mezcla la lógica de verificación de acceso con la acción de acceso a datos, lo que puede dificultar la modificación y el mantenimiento.
+
+### Sugerencia de Mejora Profesional
+
+Para mejorar este patrón lógico, se pueden aplicar varios principios de seguridad y buenas prácticas de diseño:
+
+1. **Autenticación y Autorización Separadas**:
+   - Separar la lógica de autenticación y autorización. Verifica el acceso del usuario en un lugar centralizado y usa roles y permisos bien definidos.
+
+2. **Uso de Constantes**:
+   - Utilizar constantes para los niveles de acceso en lugar de cadenas literales para mejorar la legibilidad y reducir errores tipográficos.
+
+3. **Auditar y Registrar**:
+   - Agregar un registro de auditoría para rastrear quién accede a qué recursos y cuándo.
+
+4. **Principio de Menor Privilegio**:
+   - Asegúrate de que los usuarios solo tengan los privilegios necesarios para realizar sus tareas.
+
+5. **Uso de Excepciones**:
+   - Manejar adecuadamente las excepciones para evitar errores no controlados.
+
+Aquí tienes un ejemplo mejorado:
+
+```python
+# Definir constantes para los niveles de acceso
+ROOT_ACCESS = 'root'
+ADMIN_ACCESS = 'admin'
+USER_ACCESS = 'user'
+
+# Función para verificar el acceso del usuario
+def check_access(user, required_access):
+    if user.access == required_access:
+        return True
+    return False
+
+# Función para acceder a los datos
+def access_data():
+    print("Acceso a datos concedido")
+
+# Función principal
+def main(user):
+    try:
+        if check_access(user, ROOT_ACCESS):
+            access_data()
+            # Registrar acceso
+            print(f"Usuario {user.name} con acceso {user.access} ha accedido a los datos")
+        else:
+            print("Acceso denegado")
+    except Exception as e:
+        print(f"Error al verificar acceso: {e}")
+
+# Ejemplo de uso
+class User:
+    def __init__(self, name, access):
+        self.name = name
+        self.access = access
+
+user = User(name="john_doe", access=ROOT_ACCESS)
+main(user)
+```
+
+### Explicación de la Mejora
+
+1. **Constantes**: Se definen constantes para los niveles de acceso.
+2. **Función de Verificación**: Se crea una función `check_access` para verificar el acceso del usuario, lo que facilita la extensión y el mantenimiento.
+3. **Registro de Auditoría**: Se agrega un registro de auditoría para rastrear quién accede a los datos.
+4. **Manejo de Excepciones**: Se manejan las excepciones para evitar errores no controlados.
+
+Esta estructura es más escalable, fácil de mantener y cumple con mejores prácticas de seguridad.
+───────────────────────────────────────────────────────────
+
+STATUS: SCAN COMPLETE | DEPLOYED BY:
+>>> OTTO NAPOLEON MENDOZA QUANT <<<
+
+~/nova2-hackaton $

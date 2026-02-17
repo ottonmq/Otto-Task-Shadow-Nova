@@ -1,0 +1,66 @@
+# Otto-task Agents Configuration
+# Registers agents in GitLab Duo Agent Platform
+
+agents:
+  - name: "Shadow Architect"
+    description: "Sentinel of otto-task. Created by Otto Napoleón Mendoza Quant."
+    version: "1.0.0"
+    enabled: true
+    public: true
+    
+    # Agent definition file
+    definition_file: "agents/shadow_architect.yml"
+    
+    # Flow definition file
+    flow_file: "flows/flow.yml"
+    
+    # Unit Primitives
+    unit_primitives:
+      enabled: true
+      path: "primitives"
+    
+    # Catalog registration
+    catalog:
+      agent_id: "gid://gitlab/Ai::Catalog::Item/1003212"
+      flow_id: "gid://gitlab/Ai::Catalog::Item/1003213"
+      
+    # Metadata
+    metadata:
+      creator: "Otto Napoleón Mendoza Quant"
+      project: "Otto-task"
+      type: "security-sentinel"
+      role: "Writer"
+      keywords:
+        - security
+        - architecture
+        - vulnerability-detection
+        - sentinel
+  
+  - name: "Otto Task Shadow"
+    description: "Task execution agent for otto-task. Created by Otto Napoleón Mendoza Quant."
+    version: "1.0.0"
+    enabled: true
+    public: true
+    
+    # Agent definition file
+    definition_file: "agents/otto_task_shadow.yml"
+    
+    # Flow definition file
+    flow_file: "flows/flow.yml"
+    
+    # Unit Primitives
+    unit_primitives:
+      enabled: true
+      path: "primitives"
+    
+    # Metadata
+    metadata:
+      creator: "Otto Napoleón Mendoza Quant"
+      project: "Otto-task"
+      type: "task-executor"
+      role: "Writer"
+      keywords:
+        - task-execution
+        - file-operations
+        - git-operations
+        - merge-requests

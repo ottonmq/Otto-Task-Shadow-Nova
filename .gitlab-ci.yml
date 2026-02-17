@@ -1,0 +1,30 @@
+stages:
+  - validate
+  - snova_audit
+
+# --- COMPONENTE ORIGINAL DE GITLAB (NO TOCAR) ---
+validate-items:
+  stage: validate
+  image: node:20-alpine
+  script:
+    - apk add --no-cache git curl tar
+    - echo "📦 Downloading ai-catalog-sync component..."
+    - SYNC_DIR="/tmp/ai-catalog-sync"
+    - mkdir -p "$SYNC_DIR"
+    - curl -sSL "https://gitlab.com/components/ai-catalog/-/archive/0.0.5/ai-catalog-0.0.5.tar.gz" | tar -xz -C "$SYNC_DIR" --strip-components=1
+    - cd "$SYNC_DIR" && npm install --no-audit --no-fund
+    - cd "$CI_PROJECT_DIR"
+    - ACTION=validate node /tmp/ai-catalog-sync/index.js
+
+# --- NUEVO COMPONENTE: SHADOW ARCHITECT (AMAZON NOVA) ---
+snova-sentinel-check:
+  stage: snova_audit
+  image: python:3.11-slim
+  script:
+    - pip install boto3
+    - echo "[📡] SHADOW ARCHITECT SCANNING... ARCHITECT: OTTO NAPOLEON MENDOZA QUANT"
+    - # Verificamos que el motor de Nova en Python esté impecable
+    - python -m py_compile nova_sentinel_engine.py
+    - echo "[🏮] SNOVA-SENTINEL PROTOCOL VERIFIED"
+  only:
+    - main

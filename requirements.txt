@@ -1,0 +1,19 @@
+# =================================================================
+# 🏮 SHADOW ARCHITECT - OSINT & AI DEPENDENCIES
+# PROJECT: OTTO-TASK | SNOVA-SENTINEL 2026
+# =================================================================
+
+# CORE ENGINE
+boto3==1.34.0
+botocore==1.34.0
+
+# DATA HANDLERS
+json5==0.9.14
+python-dotenv==1.0.0
+
+# SECURITY ANALYTICS
+requests==2.31.0
+
+# =================================================================
+# STATUS: READY FOR DEPLOYMENT | ARCHITECT: OTTONQQ
+# =================================================================
